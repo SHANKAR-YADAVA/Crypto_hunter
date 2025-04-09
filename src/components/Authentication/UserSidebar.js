@@ -8,7 +8,7 @@ import { AiFillDelete } from "react-icons/ai";
 import { doc, setDoc } from "firebase/firestore";
 
 export default function UserSidebar() {
-  const theme = useTheme();
+  // const theme = useTheme();
   const [state, setState] = useState(false);
   const { user, setAlert, watchlist, coins, symbol } = CryptoState();
 

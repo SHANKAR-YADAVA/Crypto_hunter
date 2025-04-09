@@ -11,6 +11,7 @@ const Carousel = () => {
   const [trending, setTrending] = useState([]);
   const { currency, symbol } = CryptoState();
 
+// eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchTrendingCoins = async () => {
     const { data } = await axios.get(TrendingCoins(currency));
     setTrending(data);
