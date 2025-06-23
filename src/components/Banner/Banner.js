@@ -1,10 +1,9 @@
-import { Container, Typography, Box, Button } from "@mui/material";
+import { Container, Typography, Box, Button, Stack } from "@mui/material";
 import Carousel from "./Carousel";
 import { useNavigate } from "react-router-dom";
 
-
 function Banner() {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   return (
     <Box
@@ -48,31 +47,56 @@ function Banner() {
               color: "darkgrey",
               textTransform: "capitalize",
               fontFamily: "Montserrat",
-              mb: 2,
+              mb: 3,
             }}
           >
             Get all the Info regarding your favorite Crypto Currency
           </Typography>
 
-          {/* ✅ Compare Coins Button */}
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "#FFD700",
-              color: "#000",
-              fontWeight: "bold",
-              alignSelf: "center",
-              px: 4,
-              py: 1.2,
-              borderRadius: 20,
-              '&:hover': {
-                backgroundColor: "#e6c200",
-              },
-            }}
-            onClick={() => navigate("/compare")}
+          {/* ✅ Buttons Stack */}
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            spacing={2}
+            justifyContent="center"
+            alignItems="center"
           >
-            Compare Coins
-          </Button>
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: "#FFD700",
+                color: "#000",
+                fontWeight: "bold",
+                px: 4,
+                py: 1.2,
+                borderRadius: 20,
+                '&:hover': {
+                  backgroundColor: "#e6c200",
+                },
+              }}
+              onClick={() => navigate("/compare")}
+            >
+              Compare Coins
+            </Button>
+
+            <Button
+              variant="outlined"
+              sx={{
+                borderColor: "#FFD700",
+                color: "#FFD700",
+                fontWeight: "bold",
+                px: 4,
+                py: 1.2,
+                borderRadius: 20,
+                '&:hover': {
+                  backgroundColor: "#FFD700",
+                  color: "#000",
+                },
+              }}
+              onClick={() => navigate("/ask-ai")}
+            >
+              Ask Crypto AI
+            </Button>
+          </Stack>
         </Box>
 
         <Box
@@ -88,4 +112,5 @@ function Banner() {
     </Box>
   );
 }
+
 export default Banner;
