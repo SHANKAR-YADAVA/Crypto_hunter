@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import "./App.css";
 import { Box } from "@mui/material";
 import Alert from "./components/Alert";
+import ComparePage from "./Pages/ComparePage";
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/coins/:id" element={<CoinPage />} />
+          <Route path="/compare" element={<ComparePage />} />
+         
         </Routes>
       </Box>
       <Alert />

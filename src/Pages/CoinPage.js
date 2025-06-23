@@ -136,7 +136,7 @@ const CoinPage = () => {
               Current Price:
             </Typography>
             &nbsp; &nbsp;
-            <Typography variant="h5" sx={{mb: 1}}>
+            <Typography variant="h5" sx={{ mb: 1 }}>
               {symbol}{" "}
               {numberWithCommas(
                 coin?.market_data.current_price[currency.toLowerCase()]
