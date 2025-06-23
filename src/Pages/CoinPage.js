@@ -1,9 +1,4 @@
-import {
-  Button,
-  LinearProgress,
-  Typography,
-  Box
-} from "@mui/material";
+import { Button, LinearProgress, Typography, Box } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -23,7 +18,16 @@ const CoinPage = () => {
 
   const fetchCoin = async () => {
     const { data } = await axios.get(SingleCoin(id));
-    setCoin(data);
+
+    // Destructure links and extract first non-empty homepage URL
+    const {
+      links: { homepage },
+    } = data;
+
+    const buyLink = homepage.find((link) => link !== "");
+
+    // Add buyLink into the coin object
+    setCoin({ ...data, buyLink });
   };
 
   const inWatchlist = watchlist.includes(coin?.id);
@@ -82,15 +86,15 @@ const CoinPage = () => {
   if (!coin) return <LinearProgress sx={{ backgroundColor: "gold" }} />;
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
+    <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" } }}>
       <Box
         sx={{
-          width: { md: '30%', xs: '100%' },
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          width: { md: "30%", xs: "100%" },
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
           mt: 3,
-          borderRight: { md: '2px solid grey' },
+          borderRight: { md: "2px solid grey" },
         }}
       >
         <img
@@ -99,36 +103,100 @@ const CoinPage = () => {
           height="200"
           style={{ marginBottom: 20 }}
         />
-        <Typography variant="h3" sx={{ fontWeight: 'bold', mb: 2, fontFamily: 'Montserrat' }}>
+        <Typography
+          variant="h3"
+          sx={{ fontWeight: "bold", mb: 2, fontFamily: "Montserrat" }}
+        >
           {coin?.name}
         </Typography>
-        <Typography variant="subtitle1" sx={{ width: '100%', fontFamily: 'Montserrat', p: 3, pt: 0, textAlign: 'justify' }}>
+        <Typography
+          variant="subtitle1"
+          sx={{
+            width: "100%",
+            fontFamily: "Montserrat",
+            p: 3,
+            pt: 0,
+            textAlign: "justify",
+          }}
+        >
           {parse(coin?.description.en.split(". ")[0])}.
         </Typography>
-        <Box sx={{ alignSelf: 'start', p: 3, pt: 1, width: '100%' }}>
-          <Box sx={{ display: 'flex' }}>
-            <Typography variant="h5" sx={{ fontWeight: 'bold' }}>Rank:</Typography>
+        <Box sx={{ alignSelf: "start", p: 3, pt: 1, width: "100%" }}>
+          <Box sx={{ display: "flex" }}>
+            <Typography variant="h5" sx={{ fontWeight: "bold", mb: 1 }}>
+              Rank:
+            </Typography>
             &nbsp; &nbsp;
-            <Typography variant="h5">{numberWithCommas(coin?.market_cap_rank)}</Typography>
+            <Typography variant="h5">
+              {numberWithCommas(coin?.market_cap_rank)}
+            </Typography>
           </Box>
-          <Box sx={{ display: 'flex' }}>
-            <Typography variant="h5" sx={{ fontWeight: 'bold' }}>Current Price:</Typography>
+          <Box sx={{ display: "flex" }}>
+            <Typography variant="h5" sx={{ fontWeight: "bold" , mb: 1 }}>
+              Current Price:
+            </Typography>
             &nbsp; &nbsp;
-            <Typography variant="h5">{symbol} {numberWithCommas(coin?.market_data.current_price[currency.toLowerCase()])}</Typography>
+            <Typography variant="h5" sx={{mb: 1}}>
+              {symbol}{" "}
+              {numberWithCommas(
+                coin?.market_data.current_price[currency.toLowerCase()]
+              )}
+            </Typography>
           </Box>
-          <Box sx={{ display: 'flex' }}>
-            <Typography variant="h5" sx={{ fontWeight: 'bold' }}>Market Cap:</Typography>
+          <Box sx={{ display: "flex" }}>
+            <Typography variant="h5" sx={{ fontWeight: "bold" , mb: 1 }}>
+              Market Cap:
+            </Typography>
             &nbsp; &nbsp;
-            <Typography variant="h5">{symbol} {numberWithCommas(coin?.market_data.market_cap[currency.toLowerCase()].toString().slice(0, -6))}M</Typography>
+            <Typography variant="h5">
+              {symbol}{" "}
+              {numberWithCommas(
+                coin?.market_data.market_cap[currency.toLowerCase()]
+                  .toString()
+                  .slice(0, -6)
+              )}
+              M
+            </Typography>
           </Box>
           {user && (
-            <Button
-              variant="outlined"
-              sx={{ width: '100%', height: 40, backgroundColor: inWatchlist ? '#ff0000' : '#EEBC1D' }}
-              onClick={inWatchlist ? removeFromWatchlist : addToWatchlist}
-            >
-              {inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
-            </Button>
+            <>
+              <Button
+                variant="contained"
+                sx={{
+                  width: "100%",
+                  height: 45,
+                  backgroundColor: inWatchlist ? "#e63946" : "#ffd60a", // red or yellow
+                  color: "#000",
+                  fontWeight: "bold",
+                  mb: 2, // margin bottom between buttons
+                  "&:hover": {
+                    backgroundColor: inWatchlist ? "#d62828" : "#f4c10f",
+                  },
+                }}
+                onClick={inWatchlist ? removeFromWatchlist : addToWatchlist}
+              >
+                {inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
+              </Button>
+
+              {coin.buyLink && (
+                <Button
+                  variant="contained"
+                  sx={{
+                    width: "100%",
+                    height: 45,
+                    backgroundColor: "#00b894", // teal green
+                    color: "#000",
+                    fontWeight: "bold",
+                    "&:hover": {
+                      backgroundColor: "#00a884",
+                    },
+                  }}
+                  onClick={() => window.open(coin.buyLink, "_blank")}
+                >
+                  Buy Now
+                </Button>
+              )}
+            </>
           )}
         </Box>
       </Box>
