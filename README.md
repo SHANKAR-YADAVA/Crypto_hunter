@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# 🪙 CryptoHunter
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**CryptoHunter** is a powerful and visually appealing cryptocurrency tracker built with React and Material-UI. It fetches live data from CoinGecko API and allows users to explore prices, charts, and details of various cryptocurrencies in real-time.
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+## CryptoHunter includes the following features:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 🔍 Search Coins – Instantly search by coin name or symbol.
+- 💹 Live Price Updates – Real-time market cap, 24h change, and prices.
+- 📈 Detailed Coin View – Charts, historical data, and coin overview.
+- 🔄 Currency Selector – Toggle between USD, INR.
+- 📊 Coin Comparison  – Side-by-side performance comparison.
+- 📄 Pagination- to efficiently browse a large list of coins
+- 🤖 Simple Chatbot – A basic chatbot to assist users by answering cryptocurrency-related queries like "What is Bitcoin?", "Top 5 coins today".
+- 🧾 Watchlist - Add your favourite coins to watchlist
 
-### `npm test`
+## Tech Stack:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Frontend: React.js 
+- UI Framework: Material-UI 
+- State Management: React Context API
+- API: CoinGecko API
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## To run the project locally:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+# Clone the repository
+git clone https://github.com/SHANKAR-YADAVA/Crypto_hunter.git
 
-### `npm run eject`
+# Install dependencies
+npm install
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Start the development server
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Open [http://localhost:3000](http://localhost:3000) to view the app in your browser.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Folder Structure:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+cryptohunter/
+├── public/
+├── src/
+│   ├── components/       # Reusable UI components
+│   ├── pages/            # Page-level components (Home, CoinPage)
+│   ├── CryptoContext.js  # Global state for currency and coins
+│   ├── App.js
+│   └── index.js
 
-## Learn More
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Live Demo:  
+🔗 https://crypto-hunter-sage.vercel.app
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+## Future Enhancements:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- 🧠 AI-powered market predictions and alerts
+- 🔔 Push notifications for price thresholds
+- 📱 Mobile PWA support
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+License:  
+This project is licensed under the MIT License.
